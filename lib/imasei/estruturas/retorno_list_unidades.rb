@@ -1,4 +1,4 @@
-module Sei
+module Imasei
 
   module Estruturas
 
@@ -11,10 +11,10 @@ module Sei
         self.retorno_list_unidades = []          
           item = params[:item]
           if item.is_a?(Hash)
-            self.retorno_list_unidades << Sei::Estruturas::RetornoUnidade.new(item)
+            self.retorno_list_unidades << Imasei::Estruturas::RetornoUnidade.new(item)
           elsif item.is_a?(Array)
             item.each do |retorno_lista_unidades|                      
-              self.retorno_list_unidades << Sei::Estruturas::RetornoUnidade.new(retorno_lista_unidades)
+              self.retorno_list_unidades << Imasei::Estruturas::RetornoUnidade.new(retorno_lista_unidades)
             end
           
           end        

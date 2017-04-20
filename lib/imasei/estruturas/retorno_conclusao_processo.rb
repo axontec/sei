@@ -1,8 +1,8 @@
-module Sei
+module Imasei
 
   module Estruturas
 
-    class RetornoInclusaoProcessoBloco < ::Valuable
+    class RetornoConclusaoProcesso < ::Valuable
 
       has_value :status
 

@@ -7,7 +7,7 @@ Esta gem facilita o acesso ao webservice do SEI!. Ela possui a implementação d
 Adicione esta linha no Gemfile da sua aplicação:
 
 ```ruby
-gem 'sei'
+gem 'wssei'
 ```
 
 E execute:
@@ -16,7 +16,7 @@ E execute:
 
 Ou instale através do seguinte comando:
 
-    $ gem install sei
+    $ gem install wssei
 
 ## Uso
 
@@ -26,7 +26,7 @@ Antes de chamar os métodos dos serviços, é necessário configurar a gem atrav
 
 ```ruby
 
-Sei.configure do |config|
+Imasei.configure do |config|
   config.wsdl = ENV['SEI_CONFIG_WSDL']
   config.follow_redirects = true
   config.pretty_print_xml = true
@@ -47,7 +47,7 @@ Exemplo:
 
 ```ruby
 
-procedimento = Sei::Estruturas::Procedimento.new
+procedimento = Imasei::Estruturas::Procedimento.new
                 .id_tipo_procedimento(id_tipo_procedimento)
                 .especificacao(especificacao)
                 .assunto(codigo_estruturado, descricao)
@@ -55,7 +55,7 @@ procedimento = Sei::Estruturas::Procedimento.new
                 .observacao(observacao)
                 .nivel_de_acesso(nivel_de_acesso)
     
-retorno_geracao_procedimento = Sei::Servico.gerar_procedimento(
+retorno_geracao_procedimento = Imasei::Servico.gerar_procedimento(
                                   id_unidade,
                                   procedimento,
                                   documentos,

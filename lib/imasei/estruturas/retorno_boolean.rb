@@ -1,8 +1,8 @@
-module Sei
+module Imasei
 
   module Estruturas
 
-    class RetornoConclusaoProcesso < ::Valuable
+    class RetornoBoolean < ::Valuable
 
       has_value :status
 

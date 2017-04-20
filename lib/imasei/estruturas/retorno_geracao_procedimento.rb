@@ -1,4 +1,4 @@
-module Sei
+module Imasei
 
   module Estruturas
 
@@ -17,10 +17,10 @@ module Sei
         if params[:retorno_inclusao_documentos] && params[:retorno_inclusao_documentos][:item]
           item = params[:retorno_inclusao_documentos][:item]
           if item.is_a?(Hash)
-            self.retorno_inclusao_documentos << Sei::Estruturas::RetornoInclusaoDocumento.new(item)
+            self.retorno_inclusao_documentos << Imasei::Estruturas::RetornoInclusaoDocumento.new(item)
           elsif item.is_a?(Array)
             item.each do |retorno_inclusao_documento|
-              self.retorno_inclusao_documentos << Sei::Estruturas::RetornoInclusaoDocumento.new(retorno_inclusao_documento)
+              self.retorno_inclusao_documentos << Imasei::Estruturas::RetornoInclusaoDocumento.new(retorno_inclusao_documento)
             end
           end
         end

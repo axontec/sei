@@ -1,7 +1,7 @@
 require "json"  
 require "nokogiri"
 
-module Sei
+module Imasei
 
   module Printer
 

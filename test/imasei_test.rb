@@ -1,9 +1,9 @@
 require 'test_helper'
 
-describe 'sei' do
+describe 'imasei' do
 
   before do
-    Sei.configure do |config|
+    Imasei.configure do |config|
       config.wsdl = ENV['SEI_CONFIG_WSDL']
       config.follow_redirects = true
       config.pretty_print_xml = true
@@ -13,11 +13,11 @@ describe 'sei' do
   end
 
   it 'tem um número de versão' do
-    refute_nil ::Sei::VERSION
+    refute_nil ::Imasei::VERSION
   end
 
   it 'gera um procedimento sem documento' do
-    procedimento = Sei::Estruturas::Procedimento.new
+    procedimento = Imasei::Estruturas::Procedimento.new
                     .id_tipo_procedimento('20')
                     .especificacao('Especificação do processo')
                     .assunto('01.01.01', 'Licitação')
@@ -25,7 +25,7 @@ describe 'sei' do
                     .observacao('Observação do webservice')
                     .nivel_de_acesso('0')
     
-    retorno_geracao_procedimento = Sei::Servico.gerar_procedimento(
+    retorno_geracao_procedimento = Imasei::Servico.gerar_procedimento(
                                       '110000949',
                                       procedimento,
                                       documentos = [],
@@ -41,7 +41,7 @@ describe 'sei' do
   end
 
   it 'gera um procedimento com 1 documento gerado' do
-    procedimento = Sei::Estruturas::Procedimento.new
+    procedimento = Imasei::Estruturas::Procedimento.new
                     .id_tipo_procedimento('20')
                     .especificacao('Especificação do processo')
                     .assunto('01.01.01', 'Licitação')
@@ -49,7 +49,7 @@ describe 'sei' do
                     .observacao('Observação do webservice')
                     .nivel_de_acesso('0')
     documentos = [
-      Sei::Estruturas::Documento.new
+      Imasei::Estruturas::Documento.new
         .tipo('G')
         .id_serie('20')
         .descricao('Descrição do documento 1')
@@ -58,7 +58,7 @@ describe 'sei' do
         .conteudo('Conteúdo do documento 1')
     ]
 
-    retorno_geracao_procedimento = Sei::Servico.gerar_procedimento(
+    retorno_geracao_procedimento = Imasei::Servico.gerar_procedimento(
                                       '110000949',
                                       procedimento,
                                       documentos,
@@ -74,7 +74,7 @@ describe 'sei' do
   end
 
   it 'gera um procedimento com 2 documentos gerados' do
-    procedimento = Sei::Estruturas::Procedimento.new
+    procedimento = Imasei::Estruturas::Procedimento.new
                     .id_tipo_procedimento('20')
                     .especificacao('Especificação do processo')
                     .assunto('01.01.01', 'Licitação')
@@ -82,14 +82,14 @@ describe 'sei' do
                     .observacao('Observação do webservice')
                     .nivel_de_acesso('0')
     documentos = [
-      Sei::Estruturas::Documento.new
+      Imasei::Estruturas::Documento.new
         .tipo('G')
         .id_serie('20')
         .descricao('Descrição do documento 1')
         .remetente('Remetente do documento 1')
         .observacao('Observação do documento 1')
         .conteudo('Conteúdo do documento 1'),
-      Sei::Estruturas::Documento.new
+      Imasei::Estruturas::Documento.new
         .tipo('G')
         .id_serie('20')
         .descricao('Descrição do documento 2')
@@ -98,7 +98,7 @@ describe 'sei' do
         .conteudo('Conteúdo do documento 2')
     ]
 
-    retorno_geracao_procedimento = Sei::Servico.gerar_procedimento(
+    retorno_geracao_procedimento = Imasei::Servico.gerar_procedimento(
                                       '110000949',
                                       procedimento,
                                       documentos,
@@ -114,7 +114,7 @@ describe 'sei' do
   end
 
   it 'gera um procedimento com 1 documento recebido' do
-    procedimento = Sei::Estruturas::Procedimento.new
+    procedimento = Imasei::Estruturas::Procedimento.new
                     .id_tipo_procedimento('20')
                     .especificacao('Especificação do processo')
                     .assunto('01.01.01', 'Licitação')
@@ -122,7 +122,7 @@ describe 'sei' do
                     .observacao('Observação do webservice')
                     .nivel_de_acesso('0')
     documentos = [
-      Sei::Estruturas::Documento.new
+      Imasei::Estruturas::Documento.new
         .tipo('R')
         .id_serie('20')
         .numero('Nome na árvore')
@@ -132,7 +132,7 @@ describe 'sei' do
         .conteudo(File.read('./test/ws-manual.pdf'))
     ]
 
-    retorno_geracao_procedimento = Sei::Servico.gerar_procedimento(
+    retorno_geracao_procedimento = Imasei::Servico.gerar_procedimento(
                                       '110000949',
                                       procedimento,
                                       documentos,
@@ -148,7 +148,7 @@ describe 'sei' do
   end
 
   it 'gera um procedimento com 2 documentos recebidos' do
-    procedimento = Sei::Estruturas::Procedimento.new
+    procedimento = Imasei::Estruturas::Procedimento.new
                     .id_tipo_procedimento('20')
                     .especificacao('Especificação do processo')
                     .assunto('01.01.01', 'Licitação')
@@ -156,7 +156,7 @@ describe 'sei' do
                     .observacao('Observação do webservice')
                     .nivel_de_acesso('0')
     documentos = [
-      Sei::Estruturas::Documento.new
+      Imasei::Estruturas::Documento.new
         .tipo('R')
         .id_serie('20')
         .numero('Nome na árvore')
@@ -164,7 +164,7 @@ describe 'sei' do
         .remetente('Remetente do documento')
         .nome_arquivo('ws-manual.pdf')
         .conteudo(File.read('./test/ws-manual.pdf')),
-      Sei::Estruturas::Documento.new
+      Imasei::Estruturas::Documento.new
         .tipo('R')
         .id_serie('20')
         .numero('Nome na árvore')
@@ -174,7 +174,7 @@ describe 'sei' do
         .conteudo(File.read('./test/logo-sei.png'))
     ]
 
-    retorno_geracao_procedimento = Sei::Servico.gerar_procedimento(
+    retorno_geracao_procedimento = Imasei::Servico.gerar_procedimento(
                                       '110000949',
                                       procedimento,
                                       documentos,
@@ -190,7 +190,7 @@ describe 'sei' do
   end
 
   it 'gera um procedimento e adiciona 1 documento gerado' do
-    procedimento = Sei::Estruturas::Procedimento.new
+    procedimento = Imasei::Estruturas::Procedimento.new
                     .id_tipo_procedimento('20')
                     .especificacao('Especificação do processo')
                     .assunto('01.01.01', 'Licitação')
@@ -198,7 +198,7 @@ describe 'sei' do
                     .observacao('Observação do webservice')
                     .nivel_de_acesso('0')
     
-    retorno_geracao_procedimento = Sei::Servico.gerar_procedimento(
+    retorno_geracao_procedimento = Imasei::Servico.gerar_procedimento(
                                       '110000949',
                                       procedimento,
                                       documentos = [],
@@ -211,7 +211,7 @@ describe 'sei' do
                                       dias_uteis_retorno_programado = 'N')
 
     documento =
-      Sei::Estruturas::Documento.new
+      Imasei::Estruturas::Documento.new
         .tipo('G')
         .id_procedimento(retorno_geracao_procedimento.id_procedimento)
         .id_serie('20')
@@ -220,7 +220,7 @@ describe 'sei' do
         .observacao('Observação do documento 1')
         .conteudo('Conteúdo do documento 1')
 
-    retorno_inclusao_documento = Sei::Servico.incluir_documento(
+    retorno_inclusao_documento = Imasei::Servico.incluir_documento(
                                     '110000949',
                                     documento)
 
