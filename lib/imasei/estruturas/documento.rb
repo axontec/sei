@@ -85,7 +85,7 @@ module Imasei
       end
 
       def conteudo_mtom(conteudo_mtom)
-        @conteudo_mtom = Base64.strict_encode64(File.read('/home/ajsoares/teste.pdf'))
+        @conteudo_mtom = Base64.strict_encode64(File.read(conteudo_mtom))
         self
       end
 
