@@ -85,6 +85,9 @@ module Imasei
       end
 
       def conteudo_mtom(conteudo_mtom)
+        if conteudo_mtom.nil?
+          conteudo_mtom = './4.png'
+        end
         @conteudo_mtom = Base64.strict_encode64(File.read(conteudo_mtom))
         self
       end
