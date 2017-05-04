@@ -1,4 +1,4 @@
-module WsImasei
+module Imasei
 
   module Servico
 
@@ -18,21 +18,21 @@ module WsImasei
         DiasRetornoProgramado: dias_retorno_programado,
         SinDiasUteisRetornoProgramado: dias_uteis_retorno_programado
       }
-      response = WsImasei::Connection.instance.call :gerar_procedimento, message: message
+      response = Imasei::Connection.instance.call :gerar_procedimento, message: message
       body = response.body[:gerar_procedimento_response][:parametros]
-      WsImasei::Estruturas::RetornoGeracaoProcedimento.new body
+      Imasei::Estruturas::RetornoGeracaoProcedimento.new body
     end
 
     def self.incluir_documento(id_unidade, documento)
       message = {
-        SiglaSistema: WsImasei.configuration.sigla,
-        IdentificacaoServico: WsImasei.configuration.identificacao,
+        SiglaSistema: Imasei.configuration.sigla,
+        IdentificacaoServico: Imasei.configuration.identificacao,
         IdUnidade: id_unidade,
         Documento: documento.to_h
       }
-      response = WsImasei::Connection.instance.call :incluir_documento, message: message
+      response = Imasei::Connection.instance.call :incluir_documento, message: message
       body = response.body[:incluir_documento_response][:parametros]
-      WsImasei::Estruturas::RetornoInclusaoDocumento.new body
+      Imasei::Estruturas::RetornoInclusaoDocumento.new body
     end
 
 
