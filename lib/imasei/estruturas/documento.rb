@@ -25,7 +25,8 @@ module Imasei
       end
 
       def data(data)
-        @data = data.strftime('%d/%m/%Y') rescue nil
+        #@data = data.strftime('%d/%m/%Y') rescue nil
+        @data = data.to_datetime.strftime('%d/%m/%Y') rescue nil
         self
       end
 
@@ -72,15 +73,27 @@ module Imasei
       end
 
       def conteudo(conteudo)
-        @conteudo = Base64.strict_encode64(conteudo)
+        if conteudo.nil?
+          conteudo = ''
+        end
+        if @tipo == 'R' && @conteudo_raw.present?
+          @conteudo = @conteudo_raw
+        else
+          @conteudo = Base64.strict_encode64(conteudo)
+        end
         self
       end
 
       def conteudo_mtom(conteudo_mtom)
-        @conteudo_mtom = File.read(conteudo_mtom)
+        @conteudo_mtom = Base64.strict_encode64(File.read(conteudo_mtom))
         self
       end
 
+      def conteudo_raw(conteudo_raw)
+        @conteudo_raw = conteudo_raw
+        self
+      end
+      
       def nivel_de_acesso(nivel_de_acesso)
         @nivel_de_acesso = nivel_de_acesso
         self

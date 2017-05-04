@@ -1,19 +1,19 @@
 require 'test_helper'
 
-describe 'wssei' do
+describe 'imasei' do
 
   before do
-    Wssei.configure do |config|
+    Imasei.configure do |config|
       config.wsdl = "https://sei-treinamento.campinas.sp.gov.br/sei/controlador_ws.php?servico=sei"
       config.follow_redirects = true
       config.pretty_print_xml = true
-      config.sigla = 'DAC'
-      config.identificacao = 'SISDAC'
+      config.sigla = 'SISDAC'
+      config.identificacao = 'DAC'
     end
   end
 
   it 'gera um procedimento com 2 documentos recebidos' do
-    procedimento = Wssei::Estruturas::Procedimento.new
+    procedimento = Imasei::Estruturas::Procedimento.new
                     .id_tipo_procedimento('26')
                     .especificacao('Especificação do processo')
                     .assunto('01.01.01', 'Licitação')
@@ -21,7 +21,7 @@ describe 'wssei' do
                     .observacao('Observação do webservice')
                     .nivel_de_acesso('0')
     documentos = [
-      Wssei::Estruturas::Documento.new
+      Imasei::Estruturas::Documento.new
         .tipo('R')
         .id_serie('20')
         .numero('Nome na árvore')
@@ -29,7 +29,7 @@ describe 'wssei' do
         .remetente('Remetente do documento')
         .nome_arquivo('ws-manual.pdf')
         .conteudo(File.read('./test/ws-manual.pdf')),
-      Wssei::Estruturas::Documento.new
+      Imasei::Estruturas::Documento.new
         .tipo('R')
         .id_serie('20')
         .numero('Nome na árvore')
@@ -39,7 +39,7 @@ describe 'wssei' do
         .conteudo(File.read('./test/logo-sei.png'))
     ]
 
-    retorno_geracao_procedimento = Wssei::Servico.gerar_procedimento(
+    retorno_geracao_procedimento = Imasei::Servico.gerar_procedimento(
                                       '110001176',
                                       procedimento,
                                       documentos,

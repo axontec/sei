@@ -7,7 +7,7 @@ Esta gem facilita o acesso ao webservice do SEI!. Ela possui a implementação d
 Adicione esta linha no Gemfile da sua aplicação:
 
 ```ruby
-gem 'wssei'
+gem 'imasei'
 ```
 
 E execute:
@@ -16,7 +16,7 @@ E execute:
 
 Ou instale através do seguinte comando:
 
-    $ gem install wssei
+    $ gem install imasei
 
 ## Uso
 
