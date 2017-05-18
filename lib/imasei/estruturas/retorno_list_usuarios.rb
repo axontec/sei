@@ -12,8 +12,8 @@ module Imasei
           if item.is_a?(Hash)
             self.retorno_list_usuarios << Imasei::Estruturas::RetornoUsuario.new(item)
           elsif item.is_a?(Array)
-            item.each do |retorno_lista_unidades|
-              self.retorno_list_usuarios << Imasei::Estruturas::RetornoUsuario.new(retorno_lista_unidades)
+            item.each do |retorno_lista_usuarios|
+              self.retorno_list_usuarios << Imasei::Estruturas::RetornoUsuario.new(retorno_lista_usuarios)
             end
           end        
         initialize_attributes

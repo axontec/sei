@@ -22,7 +22,7 @@ module Imasei
         initialize_attributes
       end
       def teste(params)
-        debugger
+        #debugger
       end
     end
 

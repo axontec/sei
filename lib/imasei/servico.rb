@@ -191,7 +191,7 @@ module Imasei
       Imasei::Estruturas::RetornoListUsuarios.new body
     end
 
-    def self.consultar_procedimento(id_unidade,protocolo_procedimento,sin_retornar_assuntos = 'N',sin_retornar_interessados = 'N',sin_retornar_observacoes = 'N',sin_retornar_andamento_geracao = 'N',sin_retornar_andamento_conclusao = 'N')     
+    def self.consultar_procedimento(id_unidade,protocolo_procedimento,sin_retornar_assuntos,sin_retornar_interessados,sin_retornar_observacoes,sin_retornar_andamento_geracao,sin_retornar_andamento_conclusao,sin_retornar_ultimo_andamento,sin_retornar_unidades_procedimento_aberto,sin_retornar_procedimentos_relacionados,sin_retornar_procedimentos_anexados)     
       message = {
         SiglaSistema: Imasei.configuration.sigla,
         IdentificacaoServico: Imasei.configuration.identificacao,
@@ -201,10 +201,16 @@ module Imasei
         SinRetornarInteressados: sin_retornar_interessados,
         SinRetornarObservacoes: sin_retornar_observacoes,
         SinRetornarAndamentoGeracao: sin_retornar_andamento_geracao,
-        SinRetornarAndamentoConclusao: sin_retornar_andamento_conclusao
+        SinRetornarAndamentoConclusao: sin_retornar_andamento_conclusao,
+        SinRetornarUltimoAndamento: sin_retornar_ultimo_andamento,
+        SinRetornarUnidadesProcedimentoAberto: sin_retornar_unidades_procedimento_aberto,
+        SinRetornarProcedimentosRelacionados: sin_retornar_procedimentos_relacionados,
+        SinRetornarProcedimentosAnexados: sin_retornar_procedimentos_anexados
+        
       }
       response = Imasei::Connection.instance.call :consultar_procedimento, message: message
       body = response.body[:consultar_procedimento_response][:parametros]
+      
       Imasei::Estruturas::RetornoConsultarProcedimento.new body
     end
 

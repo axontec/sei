@@ -1,58 +1,29 @@
 require 'test_helper'
-
+require 'net/http'
 describe 'imasei' do
 
   before do
     Imasei.configure do |config|
-      config.wsdl = "https://sei-treinamento.campinas.sp.gov.br/sei/controlador_ws.php?servico=sei"
-      config.follow_redirects = true
+      #config.wsdl = "https://sei-treinamento.campinas.sp.gov.br/sei/controlador_ws.php?servico=sei"
+      config.wsdl = "https://sei.campinas.sp.gov.br/sei/controlador_ws.php?servico=sei"
+      config.follow_redirects = false
       config.pretty_print_xml = true
-      config.sigla = 'SISDAC'
-      config.identificacao = 'DAC'
+      config.sigla = 'SINGAJ'
+      config.identificacao = 'SGJ'
     end
+
   end
 
-  it 'gera um procedimento com 2 documentos recebidos' do
-    procedimento = Imasei::Estruturas::Procedimento.new
-                    .id_tipo_procedimento('26')
-                    .especificacao('Especificação do processo')
-                    .assunto('01.01.01', 'Licitação')
-                    .interessado('leandro.telles', 'Leandro Telles')
-                    .observacao('Observação do webservice')
-                    .nivel_de_acesso('0')
-    documentos = [
-      Imasei::Estruturas::Documento.new
-        .tipo('R')
-        .id_serie('20')
-        .numero('Nome na árvore')
-        .data(Date.today)
-        .remetente('Remetente do documento')
-        .nome_arquivo('ws-manual.pdf')
-        .conteudo(File.read('./test/ws-manual.pdf')),
-      Imasei::Estruturas::Documento.new
-        .tipo('R')
-        .id_serie('20')
-        .numero('Nome na árvore')
-        .data(Date.today)
-        .remetente('Remetente do documento')
-        .nome_arquivo('logo-sei.png')
-        .conteudo(File.read('./test/logo-sei.png'))
-    ]
-
-    retorno_geracao_procedimento = Imasei::Servico.gerar_procedimento(
-                                      '110001176',
-                                      procedimento,
-                                      documentos,
-                                      procedimentos_relacionados = [],
-                                      unidades_envio = [],
-                                      manter_aberto_unidade = 'N',
-                                      enviar_email_notificacao = 'N',
-                                      data_retorno_programado = nil,
-                                      dias_retorno_programado = nil,
-                                      dias_uteis_retorno_programado = 'N')
-
-    refute_nil retorno_geracao_procedimento.id_procedimento
+ it 'Consulta um Procedimento' do
+            idUnidade = '110001176'
+            protocoloProcedimento = 'PMC.2017.00000236-75' 
+            sinRetornarAssuntos = "N" 
+            sinRetornarInteressados = "N" 
+            sinRetornarObservacoes = "N" 
+            sinRetornarAndamentoGeracao = "N" 
+            sinRetornarAndamentoConclusao = "N" 
+            retorno_consultar_procedimento = 
+            Imasei::Servico.consultar_procedimento(idUnidade,protocoloProcedimento,sinRetornarAssuntos,sinRetornarInteressados,sinRetornarObservacoes,sinRetornarAndamentoGeracao,sinRetornarAndamentoConclusao)
+    refute_nil retorno_consultar_procedimento
   end
-
-
 end

@@ -22,6 +22,8 @@ require 'imasei/estruturas/retorno_conclusao_processo'
 require 'imasei/estruturas/retorno_boolean'
 require 'imasei/estruturas/retorno_usuario'
 require 'imasei/estruturas/retorno_list_usuarios'
+require 'imasei/estruturas/retorno_unidades_procedimento_aberto'
+require 'imasei/estruturas/retorno_tipo_procedimento'
 require 'imasei/estruturas/retorno_consultar_procedimento'
 
 module Imasei
