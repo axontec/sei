@@ -27,12 +27,14 @@ module Imasei
 
       def interessado(sigla, nome)
         @interessados ||= []
+        unless sigla.nil? || nome.empty?
         @interessados << {
           interessado: {
             sigla: sigla,
             nome: nome
           }
         }
+        end
         self
       end
 
