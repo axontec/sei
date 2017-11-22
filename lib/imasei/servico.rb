@@ -241,6 +241,31 @@ module Imasei
       body = response.body[:gerar_bloco_response][:parametros]
       Imasei::Estruturas::RetornoGeracaoBloco.new body
     end
+
+    def self.listar_tipos_procedimento(id_unidade = nil,id_serie = nil)
+      message = {
+        SiglaSistema: Imasei.configuration.sigla,
+        IdentificacaoServico: Imasei.configuration.identificacao,
+        IdUnidade: id_unidade,
+        IdSerie: id_serie
+      }
+      response = Imasei::Connection.instance.call :listar_tipos_procedimento, message: message
+      body = response.body[:listar_tipos_procedimento_response][:parametros]
+      Imasei::Estruturas::RetornoListarTiposProcedimento.new body
+    end
+
+    def self.listar_series(id_unidade = nil,id_tipo_procedimento = nil)
+      message = {
+        SiglaSistema: Imasei.configuration.sigla,
+        IdentificacaoServico: Imasei.configuration.identificacao,
+        IdUnidade: id_unidade,
+        IdTipoProcedimento: id_tipo_procedimento
+      }
+      response = Imasei::Connection.instance.call :listar_series, message: message
+      body = response.body[:listar_series_response][:parametros]
+      Imasei::Estruturas::RetornoListarSeries.new body
+    end
+
   end
 
 end

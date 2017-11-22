@@ -10,21 +10,26 @@ require 'imasei/servico'
 require 'imasei/version'
 
 require 'imasei/estruturas/documento'
+require 'imasei/estruturas/documento_bloco'
 require 'imasei/estruturas/procedimento'
-require 'imasei/estruturas/retorno_inclusao_documento'
-require 'imasei/estruturas/retorno_geracao_procedimento'
-require 'imasei/estruturas/retorno_unidade'
-require 'imasei/estruturas/retorno_list_unidades'
-require 'imasei/estruturas/retorno_geracao_bloco'
-require 'imasei/estruturas/retorno_inclusao_documento_bloco'
-require 'imasei/estruturas/retorno_inclusao_processo_bloco'
-require 'imasei/estruturas/retorno_conclusao_processo'
 require 'imasei/estruturas/retorno_boolean'
+require 'imasei/estruturas/retorno_unidade'
 require 'imasei/estruturas/retorno_usuario'
-require 'imasei/estruturas/retorno_list_usuarios'
 require 'imasei/estruturas/retorno_unidades_procedimento_aberto'
 require 'imasei/estruturas/retorno_tipo_procedimento'
 require 'imasei/estruturas/retorno_consultar_procedimento'
+require 'imasei/estruturas/retorno_geracao_bloco'
+require 'imasei/estruturas/retorno_inclusao_documento'
+require 'imasei/estruturas/retorno_geracao_procedimento'
+require 'imasei/estruturas/retorno_inclusao_documento_bloco'
+require 'imasei/estruturas/retorno_inclusao_processo_bloco'
+require 'imasei/estruturas/retorno_list_unidades'
+require 'imasei/estruturas/retorno_list_usuarios'
+require 'imasei/estruturas/retorno_serie'
+require 'imasei/estruturas/retorno_listar_series'
+require 'imasei/estruturas/retorno_listar_tipos_procedimento'
+require 'imasei/estruturas/retorno_conclusao_processo'
+require 'imasei/estruturas/retorno_observacoes'
 
 module Imasei
 
@@ -34,6 +39,10 @@ module Imasei
     has :wsdl, classes: String
     has :follow_redirects
     has :pretty_print_xml
+    has :sigla, classes: String
+    has :identificacao, classes: String
+    has :encoding, classes: String
+    has :endpoint, classes: String
   end
   
 end
