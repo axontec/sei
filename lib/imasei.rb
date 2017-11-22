@@ -34,8 +34,6 @@ module Imasei
     has :wsdl, classes: String
     has :follow_redirects
     has :pretty_print_xml
-    has :sigla, classes: String
-    has :identificacao, classes: String
   end
   
 end
