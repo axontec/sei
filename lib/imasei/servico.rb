@@ -10,7 +10,7 @@ module Imasei
         IdUnidade: id_unidade,
         Procedimento: procedimento.to_h,
         Documentos: documentos.empty? ? {} : {documento: documentos.map{|documento| documento.to_h}},
-        ProcedimentosRelacionados: procedimentos_relacionados.empty? ? {} : {procedimento_relacionado: procedimentos_relacionados.map{|procedimentos_relacionado| procedimentos_relacionado.to_h}},
+        ProcedimentosRelacionados: procedimentos_relacionados.empty? ? {} : {procedimento_relacionado: procedimentos_relacionados},
         UnidadesEnvio: unidades_envio.empty? ? {} : {unidade_envio: unidades_envio.map{|unidade_envio| unidade_envio.to_message}},
         SinManterAbertoUnidade: manter_aberto_unidade,
         SinEnviarEmailNotificacao: enviar_email_notificacao,
