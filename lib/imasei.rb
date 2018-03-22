@@ -43,6 +43,7 @@ module Imasei
     has :identificacao, classes: String
     has :encoding, classes: String
     has :endpoint, classes: String
+    has :ssl_verify_mode, classes: String
   end
   
 end
