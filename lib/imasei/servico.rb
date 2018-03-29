@@ -2,7 +2,7 @@ module Imasei
 
   module Servico
 
-    def self.gerar_procedimento(id_unidade, procedimento, documentos = [], procedimentos_relacionados = [], unidades_envio = [], manter_aberto_unidade = 'N',
+    def self.gerar_procedimento(id_unidade, procedimento, documentos = [], procedimentos_relacionados = [], unidades_envio = [], manter_aberto_unidade = 'S',
                   enviar_email_notificacao = 'N', data_retorno_programado = nil, dias_retorno_programado = nil, dias_uteis_retorno_programado = 'N')
       message = {
         SiglaSistema: Imasei.configuration.sigla,
@@ -11,7 +11,7 @@ module Imasei
         Procedimento: procedimento.to_h,
         Documentos: documentos.empty? ? {} : {documento: documentos.map{|documento| documento.to_h}},
         ProcedimentosRelacionados: procedimentos_relacionados.empty? ? {} : {procedimento_relacionado: procedimentos_relacionados},
-        UnidadesEnvio: unidades_envio.empty? ? {} : {unidade_envio: unidades_envio.map{|unidade_envio| unidade_envio.to_message}},
+        UnidadesEnvio: unidades_envio.empty? ? {} : {unidade_envio: unidades_envio},
         SinManterAbertoUnidade: manter_aberto_unidade,
         SinEnviarEmailNotificacao: enviar_email_notificacao,
         DataRetornoProgramado: data_retorno_programado,
